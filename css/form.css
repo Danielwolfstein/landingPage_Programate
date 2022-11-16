@@ -1,0 +1,56 @@
+.form__box {
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+    
+}
+.form__box::before {
+    display: none;
+    height: 0;
+}
+
+.form__box::after {
+    transform: translateY(-20px);
+    transition: height 4s linear;
+}
+
+.form__head {
+    display:flex;
+    flex-flow: row;
+    align-items: center;
+}
+
+.form__head hr {
+    width: 400px;
+    height: 0;
+    border: 1px solid black;
+}
+
+.form__head h1 {
+    align-self: center;
+    text-transform: uppercase;
+}
+
+.form__formulario {
+    display: flex;
+    flex-flow: row;
+    justify-content: space-around;
+    padding: 30px 0;
+}
+
+.form__formulario input{
+    margin: 0 40px;
+}
+
+.form__formulario input:invalid{
+    border: 2px solid rgba(255, 0, 0, 0.822)
+}
+
+.form__button {
+    width: 10%;
+    height: 40px;;
+    align-self: center;
+    text-transform: uppercase;
+
+    margin-bottom: 20px;
+}
