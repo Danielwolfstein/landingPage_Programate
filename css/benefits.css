@@ -1,19 +1,13 @@
-body{
-    margin: 0;
-}
+
 
 .benefits{
     background-color: black;
     font-family: sans-serif;
     display: flex;
     justify-content: space-around;
-<<<<<<< HEAD
-    padding: 0 20px;
     padding-bottom: 20px;
-=======
     margin: 0 auto;
     overflow: hidden;
->>>>>>> 338000c1236c6573ac2c2ad9a4d1d3641891f33a
 }
 
 .subtitle{
