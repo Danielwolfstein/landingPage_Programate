@@ -35,6 +35,10 @@ boton.onclick = function singUp() {
     inputNombre.placeholder = "Nombre";
     inputNombre.required = "true";
     inputNombre.minLength = "3";
+    // organizacion de parrafo
+    const p2 = p.cloneNode();
+    const labelApellido = labelNombre.cloneNode();
+    const spanApellido = spanNombre.cloneNode();
     // input del apellido
     const inputApellido = document.createElement("input");
     inputApellido.className = "form__apellido";
@@ -42,13 +46,22 @@ boton.onclick = function singUp() {
     inputApellido.type = "text";
     inputApellido.placeholder = "Apellido";
     inputApellido.required = "true";
+    inputApellido.minLength = "3";
+    // organizacion del correo
+    const p3 = p.cloneNode();
+    const labelCorreo = labelNombre.cloneNode();
+    const spanCorreo = spanNombre.cloneNode();
     // input del correo
     const inputCorreo = document.createElement("input");
     inputCorreo.className = "form__correo";
-    inputCorreo.name = "correo";
-    inputCorreo.type = "mail";
+    inputCorreo.name = "Correo";
+    inputCorreo.type = "email";
     inputCorreo.placeholder = "Correo";
     inputCorreo.required = "true";
+    // organizacion de la clave
+    const p4 = p.cloneNode();
+    const labelClave = labelNombre.cloneNode();
+    const spanClave = spanNombre.cloneNode();
     // input del clave
     const inputClave = document.createElement("input");
     inputClave.className = "form__clave";
@@ -56,6 +69,7 @@ boton.onclick = function singUp() {
     inputClave.type = "password";
     inputClave.placeholder = "Contraseña";
     inputClave.required = "true";
+    inputClave.minLength = "6";
     // boton suscribirse
     const botonSuscribe = document.createElement("button");
     botonSuscribe.className = "form__button";
@@ -70,64 +84,75 @@ boton.onclick = function singUp() {
     boxTitle.appendChild(titulo);
     boxTitle.appendChild(hr2);
     div.appendChild(form);
+    // Agregando nombre
     form.appendChild(p);
     p.appendChild(labelNombre);
     labelNombre.appendChild(spanNombre);
     labelNombre.appendChild(inputNombre);
-    form.appendChild(inputApellido);
-    form.appendChild(inputCorreo);
-    form.appendChild(inputClave);
+    // Agregando apellido
+    form.appendChild(p2);
+    p2.appendChild(labelApellido);
+    labelApellido.appendChild(spanApellido);
+    labelApellido.appendChild(inputApellido);
+    // Agregando Correo
+    form.appendChild(p3);
+    p3.appendChild(labelCorreo);
+    labelCorreo.appendChild(spanCorreo);
+    labelCorreo.appendChild(inputCorreo);
+    // Agregando Clave
+    form.appendChild(p4);
+    p4.appendChild(labelClave);
+    labelClave.appendChild(spanClave);
+    labelClave.appendChild(inputClave);
+    // Agregando Boton Suscribe
     div.appendChild(botonSuscribe);
+    var listaInputs = [inputNombre, inputApellido, inputCorreo, inputClave];
 
     botonSuscribe.onclick = function suscribe(event) {
-        if(!inputNombre.validity.valid) {
-            // Si no es así, mostramos un mensaje de error apropiado
-            showError();
-            // Luego evitamos que se envíe el formulario cancelando el evento
-            event.preventDefault();
-          }
-        
-        let nombreError = document.querySelector("spanNombre");
-        function showError() {
-            if(inputNombre.validity.valueMissing) {
-                // Si el campo está vacío
-                // muestra el mensaje de error siguiente.
-                alert("debe introducir un nombre");
-                nombreError.textContent = 'Debe introducir una dirección de correo electrónico.';
-            } else if(inputNombre.validity.typeMismatch) {
-                // Si el campo no contiene una dirección de correo electrónico
-                // muestra el mensaje de error siguiente.
-                alert("lo que introdujo no es un correo electronico");
-                nombreError.textContent = 'El valor introducido debe ser una dirección de correo electrónico.';
-            } else if(inputNombre.validity.tooShort) {
-                // Si los datos son demasiado cortos
-                // muestra el mensaje de error siguiente.
-                alert("No existen nombres tan cortos")
-                nombreError.textContent = 'El correo electrónico debe tener al menos ${ email.minLength } caracteres; ha introducido ${ email.value.length }.';
+        for (var i = 0; i<listaInputs.length; i++) {
+
+            if(!listaInputs[i].validity.valid) {
+                // Si no es así, mostramos un mensaje de error apropiado
+                showError();
+                // Luego evitamos que se envíe el formulario cancelando el evento
+                event.preventDefault();
             }
-            
-            // Establece el estilo apropiado
-            nombreError.className = 'error activo';
+            else{
+                alert('Inscripción completa.');
+                div.remove();
+                break;
+            }
+            function showError() {
+
+                    if(listaInputs[i].validity.valueMissing) {
+                        // Si el campo está vacío
+                        // muestra el mensaje de error siguiente.
+                        listaInputs[i].placeholder = 'Introducir un '+listaInputs[i].name+'.';
+                        return;
+
+                    } 
+                    else if(listaInputs[i].validity.typeMismatch) {
+                        // Si el campo no contiene una dirección de correo electrónico
+                        // muestra el mensaje de error siguiente.
+                        listaInputs[i].value = null;
+                        listaInputs[i].placeholder = listaInputs[i].name + ' inválido.';
+                        return;
+                    } 
+                    else if(listaInputs[i].validity.tooShort) {
+                        // Si los datos son demasiado cortos
+                        // muestra el mensaje de error siguiente.
+                        listaInputs[i].value = null;
+                        listaInputs[i].placeholder = 'El '+listaInputs[i].name + ' es muy corto.';
+                        // inputNombre.placeholder = 'El correo electrónico debe tener al menos ${ email.minLength } caracteres; ha introducido ${ email.value.length }.';
+                        return;
+                    }
+                    
+                    // Establece el estilo apropiado
+                    nombreError.className = 'error activo';
+
         }
+        }
+        
     }
-    // let strValidacion = /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/;
-    // let texto = usuarioInput.value;
-    // let verificacion = strValidacion.test(texto);
-    // let clave = claveInput.value;
-    // if(verificacion==true&&clave.length>6){
-    //     console.log("Correo y clave válidas");
-    //     alert("Correo y clave válidas");
-    // }
-    // else if(verificacion==false && clave.length>6){
-    //     console.error("Correo inválido");
-    //     alert("Correo inválido");
-    // }
-    // else if(verificacion==true && clave.length<=6){
-    //     console.error("Clave inválida");
-    //     alert("Clave inválida");
-    // }
-    // else {
-    //     console.error("Correo y clave inválidas");
-    //     alert("Correo y clave inválidas");
-    // }
+    
 }
