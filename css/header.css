@@ -26,8 +26,8 @@ header {
     font-family: 'Open Sans';
     font-style: normal;
     font-weight: 400;
-    font-size: 20px;
-    line-height: 18px;
+    font-size: 16px;
+    /* line-height: 18px; */
     text-align: center;
     margin-right: 20px;
     
@@ -49,6 +49,62 @@ header {
     text-decoration: none;
 }
 
+header i {
+    display: none;
+}
+
+@media  screen and (max-width: 1245px) {
+    /* Cada elemento enlace */
+    .head__enlace{
+        margin: 0 20px;
+    }
+    .head__enlace i{
+        margin-right: 10px;
+    }
+}
+@media  screen and (max-width: 1125px) {
+    /* Cada elemento enlace */
+    .head__enlace{
+        margin: 0 10px;
+    }
+    .head__enlace i{
+        margin-right: 5px;
+    }
+}
+@media  screen and (max-width: 1025px) {
+    /* Cada elemento enlace */
+    .head__enlace{
+        margin: 0 5px;
+    }
+    .head__navegacion{
+        margin-right: 10px;
+    }
+}
+
+@media  screen and (max-width: 975px) {
+    .head__logo {
+        width: 300px;
+        height: 150px;
+        margin-left: 5px;
+    }
+
+    .head__navegacion {
+        margin-right: 5px;
+    }
+}
+
+@media  screen and (max-width: 925px) {
+    header i {
+        display: block;
+        color: white;
+        font-size: 50px;
+        margin-right: 60px;
+    }
+    /* Navegacion */
+    .head__navegacion{
+        display: none;
+    }
+}
 /* Responsive */
 @media screen and (max-width: 412px) {
     body {

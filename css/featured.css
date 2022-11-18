@@ -41,12 +41,44 @@
     height: 200px;
 }
 
+@media screen and (max-width: 1110px) {
+    .featured__linea {
+        width: 100%;
+        margin: 2px 30%;
+        
+    }
+
+    .featured__titulo{
+        font-size: 100px;
+        color: black;
+        text-transform: uppercase;
+    }
+
+    .featured__iconos img{
+        width: 100px;
+        height: 100px;
+    }
+}
+
+@media screen and (max-width: 836px) {
+    .featured__iconos img{
+        width: 75px;
+        height: 75px;
+    }
+}
+
 @media screen and (max-width: 412px) {
     .featured__linea {
         width: 50px;
         margin: 2px 20px;
         
     }
+
+    .featured__titulo{
+    font-size: 30px;
+    color: black;
+    text-transform: uppercase;
+}
     
     .featured__linea hr{
         border: 1px solid black;
